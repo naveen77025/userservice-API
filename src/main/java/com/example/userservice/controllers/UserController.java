@@ -34,4 +34,9 @@ public class UserController {
         iUserService.logout(logOutRequestDto.getToken());
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PostMapping("/validatetoken/{token}")
+    public User validateToken(@PathVariable("token") String token){
+       return iUserService.validateToken(token);
+    }
 }

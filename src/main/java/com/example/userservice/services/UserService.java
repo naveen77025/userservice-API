@@ -68,4 +68,13 @@ public class UserService implements IUserService {
         tokenRespositry.save(token1);
 
     }
+
+    @Override
+    public User validateToken(String token) {
+        Optional<Token> tkn = tokenRespositry.findByValueAndIsDeleted(token,false);
+        if(tkn.isEmpty()){
+            return null;
+        }
+        return tkn.get().getUser();
+    }
 }
